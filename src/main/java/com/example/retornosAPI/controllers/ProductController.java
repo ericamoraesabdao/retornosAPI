@@ -1,7 +1,6 @@
 package com.example.retornosAPI.controllers;
 
 import com.example.retornosAPI.models.Product;
-import com.example.retornosAPI.models.ProductEntity;
 import com.example.retornosAPI.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
