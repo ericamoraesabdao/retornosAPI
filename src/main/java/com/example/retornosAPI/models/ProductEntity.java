@@ -14,7 +14,8 @@ public class ProductEntity {
     private String name;
     @Size(max = 500, message = "A descrição deve ter no máximo 500 caracteres")
     private String description;
-    @Positive(message = "O preço é obrigatório!")
+    @NotNull(message = "O preço é obrigatório.")
+    @Positive(message = "O preço deve ser maior que zero.")
     private Double price;
     @NotNull(message = "A quantidade em estoque é obrigatória.")
     @Min(value = 0, message = "A quantidade em estoque deve ser maior ou igual a 0.")

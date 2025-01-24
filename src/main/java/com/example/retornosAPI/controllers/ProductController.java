@@ -44,9 +44,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductEntity> updateProduct(@Valid @PathVariable Long id, @RequestBody Product updateProduct) {
-        // Lógica para atualizar o usuário com o ID fornecido
-        ProductEntity product = ProductService.updateProduct(id, updateProduct);
-        return ResponseEntity.ok(product);
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Valid @RequestBody Product updateProduct) {
+        return ResponseEntity.ok(service.updateProduct(id, updateProduct));
     }
 }
