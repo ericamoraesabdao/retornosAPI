@@ -180,20 +180,20 @@ public class ProductService {
     }
 
     public Product createProduct(Product product) {
-        ProductEntity entity = new ProductEntity(null, product.name(), product.descricao(), product.price(), product.quantidadeEstoque(), product.categoria());
+        ProductEntity entity = new ProductEntity(null, product.name(), product.description(), product.price(), product.quantityStock(), product.categoryProduct());
         ProductEntity savedEntity = repository.save(entity);
-        return new Product(savedEntity.getId(), savedEntity.getName(), savedEntity.getDescricao(), savedEntity.getPrice(), savedEntity.getQuantidadeEstoque(), savedEntity.getCategoria());
+        return new Product(savedEntity.getId(), savedEntity.getName(), savedEntity.getDescription(), savedEntity.getPrice(), savedEntity.getQuantityStock(), savedEntity.getCategoryProduct());
     }
 
     public Product getProductById(Long id) {
         ProductEntity entity = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
-        return new Product(entity.getId(), entity.getName(), entity.getDescricao(), entity.getPrice(), entity.getQuantidadeEstoque(), entity.getCategoria());
+        return new Product(entity.getId(), entity.getName(), entity.getDescription(), entity.getPrice(), entity.getQuantityStock(), entity.getCategoryProduct());
     }
 
     public List<Product> getAllProducts() {
         return repository.findAll().stream()
-                .map(entity -> new Product(entity.getId(), entity.getName(), entity.getDescricao(), entity.getPrice(), entity.getQuantidadeEstoque(), entity.getCategoria()))
+                .map(entity -> new Product(entity.getId(), entity.getName(), entity.getDescription(), entity.getPrice(), entity.getQuantityStock(), entity.getCategoryProduct()))
                 .collect(Collectors.toList());
     }
 
@@ -213,10 +213,10 @@ public class ProductService {
 
         // Atualizar os dados do produto
         existingEntity.setName(updatedProduct.name());
-        existingEntity.setDescricao(updatedProduct.descricao());
+        existingEntity.setDescription(updatedProduct.description());
         existingEntity.setPrice(updatedProduct.price());
-        existingEntity.setQuantidadeEstoque(updatedProduct.quantidadeEstoque());
-        existingEntity.setCategoria(updatedProduct.categoria());
+        existingEntity.setQuantityStock(updatedProduct.quantityStock());
+        existingEntity.setCategoryProduct(updatedProduct.categoryProduct());
 
         // Salvar as alterações no banco de dados
       //  ProductEntity savedEntity = repository.save(existingEntity);
@@ -239,7 +239,7 @@ public class ProductService {
             System.out.println("Produtos encontrados com o nome '" + name + "': " + entities.size());
         }
         return entities.stream()
-                .map(entity -> new Product(entity.getId(), entity.getName(), entity.getDescricao(), entity.getPrice(), entity.getQuantidadeEstoque(), entity.getCategoria()))
+                .map(entity -> new Product(entity.getId(), entity.getName(), entity.getDescription(), entity.getPrice(), entity.getQuantityStock(), entity.getCategoryProduct()))
                 .collect(Collectors.toList());
     }
 }

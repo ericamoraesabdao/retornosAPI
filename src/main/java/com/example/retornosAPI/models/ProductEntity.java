@@ -13,26 +13,26 @@ public class ProductEntity {
     @Size(min = 3, max = 100, message = "O nome deve ter entre 3 e 100 caracteres.")
     private String name;
     @Size(max = 500, message = "A descrição deve ter no máximo 500 caracteres")
-    private String descricao;
+    private String description;
     @Positive(message = "O preço é obrigatório!")
     private Double price;
     @NotNull(message = "A quantidade em estoque é obrigatória.")
     @Min(value = 0, message = "A quantidade em estoque deve ser maior ou igual a 0.")
-    private int quantidadeEstoque;
+    private int quantityStock;
     @Enumerated(EnumType.STRING)
     @NotNull
-    private CategoryProduct categoria;
+    private CategoryProduct categoryProduct;
 
     public ProductEntity() {
     }
 
-    public ProductEntity(Long id, String name, String descricao, Double price, int quantidadeEstoque, CategoryProduct categoria) {
+    public ProductEntity(Long id, String name, String description, Double price, int quantityStock, CategoryProduct categoryProduct) {
         this.id = id;
         this.name = name;
-        this.descricao = descricao;
+        this.description = description;
         this.price = price;
-        this.quantidadeEstoque = quantidadeEstoque;
-        this.categoria = categoria;
+        this.quantityStock = quantityStock;
+        this.categoryProduct = categoryProduct;
     }
 
     public void setId(Long id) {
@@ -59,27 +59,27 @@ public class ProductEntity {
         return price;
     }
 
-    public String getDescricao(){
-        return descricao;
+    public String getDescription(){
+        return description;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getQuantidadeEstoque() {
-        return quantidadeEstoque;
+    public int getQuantityStock() {
+        return quantityStock;
     }
 
-    public void setQuantidadeEstoque(int quantidadeEstoque) {
-        this.quantidadeEstoque = quantidadeEstoque;
+    public void setQuantityStock(int quantidadeEstoque) {
+        this.quantityStock = quantidadeEstoque;
     }
 
-    public CategoryProduct getCategoria() {
-        return categoria;
+    public CategoryProduct getCategoryProduct() {
+        return categoryProduct;
     }
 
-    public void setCategoria(CategoryProduct categoria) {
-        this.categoria = categoria;
+    public void setCategoryProduct(CategoryProduct categoryProduct) {
+        this.categoryProduct = categoryProduct;
     }
 }
