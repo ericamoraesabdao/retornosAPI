@@ -96,6 +96,36 @@ cd retornosAPI
     }
 
 
+### getProductsByName
+
+**URL:** /api/products/get/{name}
+
+**Método:** GET
+
+**Descrição:** Retorna os produtos com o nome pesquisado.
+
+**Exemplo de Resposta:**
+
+    [
+        {
+            "id": 1,
+            "name": "Goiabada",
+            "description": "Delicioso doce de goiaba feito da mais pura goiaba da serra",
+            "price": 9.99,
+            "quantityStock": 10,
+            "categoryProduct": "ALIMENTOS"
+        },
+        {
+            "id": 2,
+            "name": "Goiabada",
+            "description": "Delicioso doce de goiaba feito da mais pura goiaba da serra",
+            "price": 9.99,
+            "quantityStock": 10,
+            "categoryProduct": "ALIMENTOS"
+        }
+    ]
+
+
 ### getAllProducts
 
 **URL:** /api/products
