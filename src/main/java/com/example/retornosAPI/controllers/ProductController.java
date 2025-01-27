@@ -28,6 +28,11 @@ public class ProductController {
         return ResponseEntity.ok(service.getProductById(id));
     }
 
+    @GetMapping("/get/{name}")
+    public ResponseEntity<List<Product>> getProductsByName(@Valid @PathVariable String name) {
+        return ResponseEntity.ok(service.getProductsByName(name));
+    }
+
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
         return ResponseEntity.ok(service.getAllProducts());
@@ -44,6 +49,9 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Valid @RequestBody Product updateProduct) {
+        if (!service.productExists(id)) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(service.updateProduct(id, updateProduct));
     }
 }
