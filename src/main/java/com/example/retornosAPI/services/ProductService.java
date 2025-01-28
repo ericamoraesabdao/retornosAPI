@@ -1,5 +1,6 @@
 package com.example.retornosAPI.services;
 
+import com.example.retornosAPI.exceptions.ResourceNotFoundException;
 import com.example.retornosAPI.models.Product;
 import com.example.retornosAPI.models.ProductEntity;
 import com.example.retornosAPI.repositories.ProductRepository;
@@ -25,7 +26,7 @@ public class ProductService {
 
     public Product getProductById(Long id) {
         ProductEntity entity = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Produto não encontrado!"));
         return new Product(entity.getId(), entity.getName(), entity.getDescription(), entity.getPrice(), entity.getQuantityStock(), entity.getCategoryProduct());
     }
 
@@ -40,14 +41,21 @@ public class ProductService {
     }
 
     public void deleteProduct(Long id) {
-        repository.deleteById(id);
+        if (productExists(id)) {
+            repository.deleteById(id);
+        } else {
+            ProductEntity existingEntity = repository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("Produto com o ID: " + id + " não foi encontrado."));
+
+        }
+
     }
 
     // Atualizar um produto existente
     public Product updateProduct(Long id, Product updatedProduct) {
         // Verificar se o produto existe
         ProductEntity existingEntity = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product with ID " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Não foi possível atualizar pois o produto não foi encontrado."));
 
         // Atualizar os dados do produto
         existingEntity.setName(updatedProduct.name());
